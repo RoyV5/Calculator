@@ -33,11 +33,12 @@ clearButton.addEventListener('click', clearAll.bind(null, '0'))
 
 backspaceButton.addEventListener('click', removeLast);
 
-operatorButtons.forEach(button => button.addEventListener('click', operandPressed.bind(null, button)))
+operatorButtons.forEach(button => button.addEventListener('click', operandPressed.bind(null, button.innerHTML)))
 
 returnButton.addEventListener('click', returnPressed)
 
 document.addEventListener('keydown', (event => {
+    console.log(event.key);
     switch(event.key) {
         case '1':
         case '2':
@@ -50,6 +51,30 @@ document.addEventListener('keydown', (event => {
         case '9':
         case '0':
             addSelf(event.key);
+            console.log('Number Pressed')
+            break;
+        case '*':
+        case '-':
+        case '/':
+        case '+':
+            console.log('Operator Pressed')
+            operandPressed(event.key);
+            break;
+        case 'Enter':
+        case '=':
+            console.log('Return Pressed')
+            returnPressed();
+            break;
+        case 'Backspace':
+            if (event.shiftKey) {
+                clearAll('0')
+            }
+            else {removeLast()}
+            break;
+        case '.':
+            addDecimal();
+            break;
+
 }
 }));
 
@@ -63,7 +88,7 @@ function returnPressed() {
     resetAll();
 }
 
-function operandPressed(operator) {
+function operandPressed(string) {
     if (operatorBlock) {
         return null; 
     } else if (operatorString !== '') {
@@ -73,7 +98,7 @@ function operandPressed(operator) {
         clear('')
         lastResult = result
         resetAll();
-        operatorSymbol = operator.innerText;
+        operatorSymbol = string;
         operatorString = convertToOperatorString(operatorSymbol);
         subCalcDisplay.innerText += ' ' + operatorSymbol
         operatorBlock = true
@@ -81,7 +106,7 @@ function operandPressed(operator) {
     firstValue = Number(calcDisplay.innerHTML);
     subCalcDisplay.innerHTML = firstValue;
     clear('');
-    operatorSymbol = operator.innerText;
+    operatorSymbol = string;
     operatorString = convertToOperatorString(operatorSymbol);
     subCalcDisplay.innerHTML += ' ' + operatorSymbol;
     operatorBlock = true;
@@ -90,7 +115,7 @@ function operandPressed(operator) {
 
 function calculateResult() {
     secondValue = Number(calcDisplay.innerHTML);
-    result = operate(firstValue, secondValue, operatorString);
+    result = operate(firstValue, secondValue, operatorString)
     operatorBlock = false;
 }
 
@@ -101,7 +126,6 @@ function resetAll() {
 }
 
 function addSelf(string) {
-    console.log(string)
     let isRestrained = (restrainedCharacters.some(char => calcDisplay.innerText.includes(char) && calcDisplay.innerText.length === 1))
     if (isRestrained) {calcDisplay.innerText = ''}
     calcDisplay.innerText += string

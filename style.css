@@ -20,17 +20,17 @@ body {
     gap: 5px;
 }
 
-#main-container button {
+button {
     background-color: #303134;
     border: none;
     border-radius: 5px;
 }
 
-#main-container button:hover {
+button:hover {
     background-color: #424548;
 }
 
-#main-container button,
+button,
 #calc-display {
     color: white;
 }
@@ -75,4 +75,14 @@ body {
 #sub-display {
     font-size: 0.8em;
     color: rgb(181, 181, 181);
+}
+
+.operator-button,
+#backspace-button {
+    background-color: rgb(0, 85, 176);
+}
+
+.operator-button:hover ,
+#backspace-button:hover {
+    background-color: rgb(14, 114, 222);
 }
