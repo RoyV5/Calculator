@@ -51,17 +51,18 @@ document.addEventListener('keydown', (event => {
         case '9':
         case '0':
             addSelf(event.key);
-            console.log('Number Pressed')
             break;
         case '*':
         case '-':
         case '/':
         case '+':
-            console.log('Operator Pressed')
             operandPressed(event.key);
             break;
         case '=':
         case 'Enter':
+            if (event.target && event.key === 'Enter') {
+                event.preventDefault();
+            }
             returnPressed();
             break;
         case 'Backspace':
