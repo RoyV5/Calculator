@@ -9,6 +9,9 @@ body {
     background-color: var(--bg-color);
 }
 #main-container {
+    padding: 20px;
+    border:1px solid #303134;
+    border-radius: 10px;
     display: grid;
     width: max-content;
     margin: 50px auto;
