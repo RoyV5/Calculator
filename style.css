@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
+
+:root {
+    --bg-color: #202124;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: var(--bg-color);
+}
+#main-container {
+    display: grid;
+    width: max-content;
+    margin: 50px auto;
+    grid-template-columns: repeat(4, 50px);
+    grid-template-rows: repeat(7, 50px);
+    grid-template-areas:"display display display display"
+                        "display display display display" 
+                        "clear clear clear backspace";
+    gap: 5px;
+}
+
+#main-container button {
+    background-color: #303134;
+    border: none;
+    border-radius: 5px;
+}
+
+#main-container button:hover {
+    background-color: #424548;
+}
+
+#main-container button,
+#calc-display {
+    color: white;
+}
+
+#calc-display {
+    display: flex;
+    justify-content: end;
+    align-items: flex-end;
+    padding: 15px;
+    grid-area: display;
+    background-color: transparent;
+    border: 1px solid #303134;
+    border-radius: 10px;
+    flex-flow: row wrap;
+    text-align: end;
+}
+
+#calc-display p {
+    margin: 0;
+    padding: 0;
+}
+
+#calc-display:hover {
+    background-color: #303134;
+}
+
+#clear-button {
+    grid-area: clear;
+}
+
+#backspace-button {
+    font-family: 'Material Icons';
+}
+
+#main-display,
+#sub-display {
+    display: block;
+    flex: 1 1 auto;
+    width: 100%;
+}
+
+#sub-display {
+    font-size: 0.8em;
+    color: rgb(181, 181, 181);
+}
