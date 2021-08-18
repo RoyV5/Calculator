@@ -60,20 +60,22 @@ document.addEventListener('keydown', (event => {
             console.log('Operator Pressed')
             operandPressed(event.key);
             break;
-        case 'Enter':
         case '=':
-            console.log('Return Pressed')
+        case 'Enter':
             returnPressed();
             break;
         case 'Backspace':
             if (event.shiftKey) {
                 clearAll('0')
+                break;
             }
             else {removeLast()}
             break;
         case '.':
             addDecimal();
             break;
+        default:
+            console.log('Invalid input')
 
 }
 }));
